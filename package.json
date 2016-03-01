@@ -8,11 +8,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/atom/electron-quick-start.git"
+    "url": "git+https://github.com/valery-sizikova/plushkin.git"
   },
   "author": "Valery Sizikova",
   "license": "MIT",
-  "homepage": "https://github.com/atom/electron-quick-start#readme",
+  "homepage": "https://github.com/valery-sizikova/plushkin#readme",
   "devDependencies": {
     "asar": "^0.9.1",
     "electron-prebuilt": "^0.36.7",
