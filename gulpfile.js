@@ -1,12 +1,12 @@
 var gulp = require('gulp'),
     electron = require('electron-prebuilt'),
     concat = require('gulp-concat'),
-    run = require('gulp-run'),
     livereload = require('gulp-livereload'),
     inject = require('gulp-inject'),
     sass = require('gulp-sass'),
     minifyCss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
+    shell = require('gulp-shell'),
     ngAnnotate = require('gulp-ng-annotate');
 
 var paths = {
@@ -17,9 +17,9 @@ var paths = {
 
 gulp.task('default', ['js', 'sass', 'html']);
 
-gulp.task('run', ['default', 'watch'], function() {
-  return run('electron src').exec();
-});
+gulp.task('run', ['electron', 'default', 'watch']);
+
+gulp.task('electron', shell.task(['electron src']));
 
 /**
  *  Watch task
