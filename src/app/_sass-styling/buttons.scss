@@ -1,0 +1,17 @@
+.btn {
+  padding: .5rem 1rem;
+  margin: 2rem;
+  background-color: transparent;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.btn-big {
+  padding: 1rem 2rem;
+}
+
+.btn-yellow {
+  background-color: #9bb317 !important;
+  color: #fff !important;
+  @extend .btn;
+}
