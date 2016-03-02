@@ -24,6 +24,18 @@ h5, .h5 {
 }
 
 .icon {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+a {
+
+  &:hover {
+    text-decoration: none !important;
+  }
+
+  &:focus {
+    outline: none !important;
+    text-decoration: none !important;
+  }
 }
