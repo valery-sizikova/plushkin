@@ -1,3 +1,10 @@
-.main {
-  color: red;
+.main-window {
+  display: inline-block;
+}
+
+.balance-panel {
+  display: inline-block;
+  width: 200px;
+  height: 100vh;
+  float: right;
 }
