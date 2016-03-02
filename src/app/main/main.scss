@@ -4,7 +4,64 @@
 
 .balance-panel {
   display: inline-block;
-  width: 200px;
+  padding: 2rem;
+  width: 300px;
   height: 100vh;
   float: right;
+
+  .accordion, .total {
+    margin-top: 2rem !important;
+    box-shadow: none !important;
+    outline: none !important;
+
+    &:hover {
+      i {
+        color: $simon;
+      }
+    }
+
+    .panel-heading {
+      padding: 0 !important;
+    }
+
+    .panel-body {
+      border-top: none !important;
+      padding: 0 !important;
+    }
+
+    i {
+      color: $summer;
+    }
+
+    h3, h5, input {
+      display: inline-block;
+      padding: 0;
+    }
+
+    input {
+      background-color: $zoe;
+      border: none;
+      border-bottom: 2px $inara solid;
+      text-align: right;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .balance-name {
+      width: calc(54% - 2rem);
+      margin-left: 2rem;
+    }
+
+    .balance-amount {
+      width: calc(44% - 2rem);
+      margin-left: 2rem;
+    }
+  }
+
+  .total {
+    margin-top: 4rem !important;
+    border-top: 2px solid $malcolm;
+  }
 }
