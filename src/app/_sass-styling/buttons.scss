@@ -10,8 +10,13 @@
   padding: 1rem 2rem;
 }
 
-.btn-yellow {
-  background-color: #9bb317 !important;
-  color: #fff !important;
-  @extend .btn;
+.btn-simon {
+  background-color: $simon;
+  color: $white;
 }
+
+.btn-inara {
+  background-color: $inara;
+  color: $malcolm;
+}
+

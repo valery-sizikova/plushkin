@@ -50,6 +50,7 @@ gulp.task('sass', function(done) {
 
   var files = gulp.src([
     './src/app/**/*.scss',
+    '!.src/app/_sass-utilities/*.scss',
     '!./src/app/src.scss'
   ]);
   var injectOptions = {
