@@ -3,6 +3,7 @@
 }
 
 .balance-panel {
+  background-color: $malcolm-extra-light;
   display: inline-block;
   padding: 2rem;
   width: 300px;
@@ -14,9 +15,13 @@
     box-shadow: none !important;
     outline: none !important;
 
+    i {
+      color: $wash-extra-light;
+    }
+
     &:hover {
       i {
-        color: $simon;
+        color: $jayne-extra-light;
       }
     }
 
@@ -29,23 +34,20 @@
       padding: 0 !important;
     }
 
-    i {
-      color: $summer;
-    }
-
     h3, h5, input {
       display: inline-block;
       padding: 0;
     }
 
     input {
-      background-color: $zoe;
+      background-color: $malcolm-extra-light;
       border: none;
-      border-bottom: 2px $inara solid;
+      border-bottom: 2px $wash-extra-light solid;
       text-align: right;
 
       &:focus {
         outline: none;
+        border-bottom: 2px $jayne-extra-light solid;
       }
     }
 
@@ -63,5 +65,8 @@
   .total {
     margin-top: 4rem !important;
     border-top: 2px solid $malcolm;
+    h3 {
+      font-weight: 400;
+    }
   }
 }
