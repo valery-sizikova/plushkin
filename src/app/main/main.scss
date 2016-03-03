@@ -1,12 +1,18 @@
 .main-window {
+  background-color: $wash-extra-light;
   display: inline-block;
+  width: calc(100% - 300px);
+  height: 100vh;
+
+  @include respond-to-max-width('lg') {
+    width: calc(100% - 100px);
+  }
 }
 
 .balance-panel {
   background-color: $malcolm-extra-light;
   display: inline-block;
-  padding: 2rem;
-  width: 300px;
+  padding: 0 2rem;
   height: 100vh;
   float: right;
 
@@ -68,5 +74,36 @@
     h3 {
       font-weight: 400;
     }
+  }
+}
+
+.balance-panel-big {
+  width: calc(300px - 4rem);
+  display: none;
+  @include respond-to('lg') {
+    display: block;
+  }
+}
+
+.balance-panel-small {
+  background-color: $malcolm-extra-light;
+  width: calc(100px - 4rem);
+  height: 100vh;
+  float: right;
+
+  .total-small {
+    transform: rotate(90deg);
+    white-space:nowrap;
+    display:block;
+    width: 15px;
+    height:100px;
+
+    h3 {
+      font-size: 4rem !important;
+    }
+  }
+
+  @include respond-to('lg') {
+    display: none;
   }
 }

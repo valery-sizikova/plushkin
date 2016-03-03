@@ -11,7 +11,6 @@
       //////////
 
       function go(path) {
-        console.log('go works');
         $location.path(path);
       }
     }])
