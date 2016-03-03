@@ -1,16 +1,33 @@
 $black: #000;
+$zoe: #2D2D2D;
+$inara: #686868;
+$kaylee: #BABABA;
+$summer: #E3E3E3;
 $white: #fff;
 
-$malcolm: #1b6d85;
-$zoe: #48b1b7;
-$inara: #c7f7f4;
-$simon: #9bb317;
-$summer: #d2dd43;
+$malcolm: #1B6E85;
+$malcolm-extra-light: #5695A7;
+$malcolm-light: #347B8F;
+$malcolm-dark: #0E566A;
+$malcolm-extra-dark: #034052;
+
+$wash: #D6A126;
+$wash-extra-light: #FFD97F;
+$wash-light: #E6B94F;
+$wash-dark: #AA7D12;
+$wash-extra-dark: #835C00;
+
+$jayne: #D63E26;
+$jayne-extra-light: #FF907F;
+$jayne-light: #E6644F;
+$jayne-dark: #AA2712;
+$jayne-extra-dark: #831200;
 
 
+//Text colors
 
-.malcolm-text {
-  color: $malcolm !important;
+.black-text {
+  color: $black !important;
 }
 
 .zoe-text {
@@ -21,18 +38,86 @@ $summer: #d2dd43;
   color: $inara !important;
 }
 
-.simon-text {
-  color: $simon !important;
+.kaylee-text {
+  color: $kaylee !important;
 }
 
 .summer-text {
   color: $summer !important;
 }
 
+.white-text {
+  color: $white !important;
+}
 
 
-.malcolm-bg {
-  background-color: $malcolm !important;
+.malcolm-text {
+  color: $malcolm !important;
+}
+
+.malcolm-extra-light-text {
+  color: $malcolm-extra-light !important;
+}
+
+.malcolm-light-text {
+  color: $malcolm-light !important;
+}
+
+.malcolm-dark-text {
+  color: $malcolm-dark !important;
+}
+
+.malcolm-extra-dark-text {
+  color: $malcolm-extra-dark !important;
+}
+
+
+.wash-text {
+  color: $wash !important;
+}
+
+.wash-extra-light-text {
+  color: $wash-extra-light !important;
+}
+
+.wash-light-text {
+  color: $wash-light !important;
+}
+
+.wash-dark-text {
+  color: $wash-dark !important;
+}
+
+.wash-extra-dark-text {
+  color: $wash-extra-dark !important;
+}
+
+
+.jayne-text {
+  color: $jayne !important;
+}
+
+.jayne-extra-light-text {
+  color: $jayne-extra-light !important;
+}
+
+.jayne-light-text {
+  color: $jayne-light !important;
+}
+
+.jayne-dark-text {
+  color: $jayne-dark !important;
+}
+
+.jayne-extra-dark-text {
+  color: $jayne-extra-dark !important;
+}
+
+
+//Background colors
+
+.black-bg {
+  background-color: $black !important;
 }
 
 .zoe-bg {
@@ -43,10 +128,77 @@ $summer: #d2dd43;
   background-color: $inara !important;
 }
 
-.simon-bg {
-  background-color: $simon !important;
+.kaylee-bg {
+  background-color: $kaylee !important;
 }
 
 .summer-bg {
   background-color: $summer !important;
+}
+
+.white-bg {
+  background-color: $white !important;
+}
+
+
+.malcolm-bg {
+  background-color: $malcolm !important;
+}
+
+.malcolm-extra-light-bg {
+  background-color: $malcolm-extra-light !important;
+}
+
+.malcolm-light-bg {
+  background-color: $malcolm-light !important;
+}
+
+.malcolm-dark-bg {
+  background-color: $malcolm-dark !important;
+}
+
+.malcolm-extra-dark-bg {
+  background-color: $malcolm-extra-dark !important;
+}
+
+
+.wash-bg {
+  background-color: $wash !important;
+}
+
+.wash-extra-light-bg {
+  background-color: $wash-extra-light !important;
+}
+
+.wash-light-bg {
+  background-color: $wash-light !important;
+}
+
+.wash-dark-bg {
+  background-color: $wash-dark !important;
+}
+
+.wash-extra-dark-bg {
+  background-color: $wash-extra-dark !important;
+}
+
+
+.jayne-bg {
+  background-color: $jayne !important;
+}
+
+.jayne-extra-light-bg {
+  background-color: $jayne-extra-light !important;
+}
+
+.jayne-light-bg {
+  background-color: $jayne-light !important;
+}
+
+.jayne-dark-bg {
+  background-color: $jayne-dark !important;
+}
+
+.jayne-extra-dark-bg {
+  background-color: $jayne-extra-dark !important;
 }

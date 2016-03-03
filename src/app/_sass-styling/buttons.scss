@@ -2,21 +2,41 @@
   padding: .5rem 1rem;
   margin: 2rem;
   background-color: transparent;
+  border: none;
   border-radius: 3px;
   text-transform: uppercase;
+
+  &:active {
+    outline: none !important;
+    box-shadow: none;
+  }
 }
 
 .btn-big {
   padding: 1rem 2rem;
 }
 
-.btn-simon {
-  background-color: $simon;
+.btn-wash-light {
+  background-color: $wash-light;
   color: $white;
+  &:hover {
+    background-color: $wash;
+    color: $white;
+  }
+  &:active {
+    background-color: $wash-dark;
+  }
 }
 
-.btn-inara {
-  background-color: $inara;
-  color: $malcolm;
+.btn-malcolm {
+  background-color: $malcolm;
+  color: $jayne-extra-light;
+  &:hover {
+    background-color: $malcolm-dark;
+    color: $jayne-extra-light;
+  }
+  &:active {
+    background-color: $malcolm-extra-dark;
+  }
 }
 
