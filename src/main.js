@@ -12,7 +12,7 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1000, height: 800});
+  mainWindow = new BrowserWindow({width: 1000, minWidth: 550, height: 800, minHeight: 550});
 
   // and load the index.html of the src.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
