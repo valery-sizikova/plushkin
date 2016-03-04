@@ -16,27 +16,27 @@
   padding: 1rem 2rem;
 }
 
-.btn-wash-light {
-  background-color: $wash-light;
-  color: $white;
+.btn-wash {
+  background-color: $wash;
+  color: $simon;
   &:hover {
-    background-color: $wash;
-    color: $white;
+    background-color: $wash-dark;
+    color: $simon;
   }
   &:active {
-    background-color: $wash-dark;
+    background-color: $wash-extra-dark;
   }
 }
 
 .btn-malcolm {
-  background-color: $malcolm;
-  color: $jayne-extra-light;
+  background-color: $malcolm-extra-light;
+  color: $summer;
   &:hover {
-    background-color: $malcolm-dark;
-    color: $jayne-extra-light;
+    background-color: $malcolm-light;
+    color: $summer;
   }
   &:active {
-    background-color: $malcolm-extra-dark;
+    background-color: $malcolm;
   }
 }
 
