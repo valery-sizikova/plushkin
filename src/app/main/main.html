@@ -1,11 +1,20 @@
-<div class="main-window">
-    <h1 class="malcolm-text">MAIN</h1>
-    <button ng-click="vm.go('/')"
-            class="btn btn-wash-light">
-        boom!
-    </button>
+<div class="main">
+    <div class="main-window">
+        <div class="text-center">
+            <h2 class="wash-dark-text bold period">25 feb 2016 - 24 mar 2016</h2>
+            <a class="malcolm-extra-light-text period-link" href="">save and archive</a>
+        </div>
+
+        <h3 class="malcolm-dark-text text-center bold">daily budget &#8212 <span class="simon-extra-dark-text">109 €</span></h3>
+
+        <button ng-click="vm.go('/')"
+                class="btn btn-malcolm">
+            boom!
+        </button>
+    </div>
+
+    <div ng-include
+         class="balance-panel"
+         src="'app/main/balance-panel.html'"></div>
 </div>
 
-<div ng-include
-     class="balance-panel"
-     src="'app/main/balance-panel.html'"></div>
