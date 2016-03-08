@@ -1,16 +1,39 @@
 <div class="main">
     <div class="main-window">
-        <div class="text-center">
-            <h2 class="wash-dark-text bold period">25 feb 2016 - 24 mar 2016</h2>
-            <a class="malcolm-extra-light-text period-link" href="">save and archive</a>
-        </div>
 
-        <h3 class="malcolm-dark-text text-center bold">daily budget &#8212 <span class="simon-extra-dark-text">109 €</span></h3>
+        <div class="text-center">
+            <h2 class="wash-dark-text bold"><span>{{vm.firstDay | date: 'dd MMM yyyy'}}</span> -
+                <span>{{vm.lastDay | date: 'dd MMM yyyy'}}</span></h2>
+        </div>
 
         <button ng-click="vm.go('/')"
                 class="btn btn-malcolm">
             boom!
         </button>
+
+        <form>
+            <div class="row">
+                <label class="col-xs-6">the first day of the period</label>
+                <p class="input-group col-xs-5">
+                    <input type="text" class="form-control" ng-model="vm.firstDay" uib-datepicker-popup is-open="vm.popupOne.opened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-malcolm no-margin" ng-click="vm.openOne()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <label class="col-xs-6">the last day of the period</label>
+                <p class="input-group col-xs-5">
+                    <input type="text" class="form-control" ng-model="vm.lastDay" uib-datepicker-popup is-open="vm.popupTwo.opened" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-malcolm no-margin" ng-click="vm.openTwo()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
+            </div>
+        </form>
     </div>
 
     <div ng-include

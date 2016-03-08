@@ -1,7 +1,5 @@
 .btn {
   padding: .5rem 1rem;
-  margin: 2rem;
-  background-color: transparent;
   border: none;
   border-radius: 3px;
   text-transform: uppercase;
@@ -17,6 +15,7 @@
 }
 
 .btn-wash {
+  margin: 2rem;
   background-color: $wash;
   color: $simon;
   &:hover {
@@ -29,6 +28,7 @@
 }
 
 .btn-malcolm {
+  margin: 2rem;
   background-color: $malcolm-extra-light;
   color: $summer;
   &:hover {

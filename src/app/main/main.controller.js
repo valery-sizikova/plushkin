@@ -44,6 +44,26 @@
       vm.nameExpenses = null;
       vm.amountExpenses = null;
 
+      vm.popupOne = {
+        opened: false
+      };
+      vm.openOne = openOne;
+      vm.popupTwo = {
+        opened: false
+      };
+      vm.openTwo = openTwo;
+      vm.altInputFormats = ['M!/d!/yyyy'];
+      vm.dateOptions = {
+        //dateDisabled: disabled,
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(2015, 5, 22),
+        startingDay: 1
+      };
+      vm.firstDay = null;
+      vm.lastDay = null;
+
+
       activate();
 
       //////////
@@ -89,6 +109,14 @@
           vm.nameExpenses = null;
           vm.amountExpenses = null;
         }
+      }
+
+      function openOne() {
+        vm.popupOne.opened = true;
+      }
+
+      function openTwo() {
+        vm.popupTwo.opened = true;
       }
 
     }]);

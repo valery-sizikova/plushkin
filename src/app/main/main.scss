@@ -12,19 +12,22 @@
   height: 100%;
   min-width: calc(100vw - 300px);
 
-  .period {
-    display: inline-block;
-  }
-
-  .period-link {
-    display: inline-block;
-    text-decoration: underline;
-    font-size: 1.7rem;
-  }
-
   @include respond-to-max-width('lg') {
     width: calc(100% - 100px);
     min-width: calc(100vw - 100px);
+  }
+
+  label {
+    margin-left: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .input-group {
+    margin-top: -4px;
+    width: 272px;
+    .btn-malcolm {
+      height: 34px;
+    }
   }
 }
 
@@ -131,5 +134,11 @@
 
   @include respond-to('lg') {
     display: none;
+  }
+}
+
+.form-control {
+  .btn {
+    background-color: $malcolm;
   }
 }
