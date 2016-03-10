@@ -6,35 +6,9 @@
       var vm = this;
       vm.go = MainService.go;
       vm.incomeTotal = false;
-      vm.incomeItems = [
-        {
-          name: "tax return",
-          amount: 1000
-        },
-        {
-          name: "salary",
-          amount: 2000
-        },
-        {
-          name: "bonus",
-          amount: 3000
-        }
-      ];
+      vm.incomeItems = [];
       vm.expensesTotal = false;
-      vm.expensesItems = [
-        {
-          name: "mortgage",
-          amount: 1000
-        },
-        {
-          name: "electricity bill",
-          amount: 200
-        },
-        {
-          name: "insurance",
-          amount: 150
-        }
-      ];
+      vm.expensesItems = [];
       vm.details = false;
       vm.showDetails = showDetails;
       vm.saveNewIncomeItem = saveNewIncomeItem;
@@ -44,17 +18,13 @@
       vm.nameExpenses = null;
       vm.amountExpenses = null;
 
-      vm.popupOne = {
-        opened: false
+      vm.calendarOpened = {
+        first: false,
+        last: false
       };
-      vm.openOne = openOne;
-      vm.popupTwo = {
-        opened: false
-      };
-      vm.openTwo = openTwo;
+      vm.openCalendar = openCalendar;
       vm.altInputFormats = ['M!/d!/yyyy'];
       vm.dateOptions = {
-        //dateDisabled: disabled,
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
         minDate: new Date(2015, 5, 22),
@@ -62,15 +32,21 @@
       };
       vm.firstDay = null;
       vm.lastDay = null;
-
+      vm.dailyBudget = dailyBudget;
 
       activate();
 
       //////////
 
       function activate() {
-        vm.incomeTotal = getTotal(vm.incomeItems);
-        vm.expensesTotal = getTotal(vm.expensesItems);
+        MainService.getData().then(function(response) {
+          vm.incomeItems = response.data.currentPeriod.incomeItems;
+          vm.expensesItems = response.data.currentPeriod.expensesItems;
+          vm.incomeTotal = getTotal(vm.incomeItems);
+          vm.expensesTotal = getTotal(vm.expensesItems);
+        }, function() {
+          alert('Something went wrong! Please reload the app!');
+        });
       }
 
       function getTotal(items) {
@@ -111,12 +87,19 @@
         }
       }
 
-      function openOne() {
-        vm.popupOne.opened = true;
+      function openCalendar(type) {
+        if (type === "first") {
+          vm.calendarOpened.first = true;
+        } else if (type === "last") {
+          vm.calendarOpened.last = true;
+        }
       }
 
-      function openTwo() {
-        vm.popupTwo.opened = true;
+
+      function dailyBudget() {
+        var mlsecPerDay = 1000 * 60 * 60 * 24;
+        var periodLength = Math.round((vm.lastDay - vm.firstDay) / mlsecPerDay);
+        return Math.round((vm.incomeTotal - vm.expensesTotal) / periodLength);
       }
 
     }]);
