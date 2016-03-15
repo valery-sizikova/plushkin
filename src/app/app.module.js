@@ -5,6 +5,7 @@
     'ngRoute',
     'ui.bootstrap',
     'app.main',
-    'app.welcome'
+    'app.welcome',
+    'lokijs'
   ])
 })();
