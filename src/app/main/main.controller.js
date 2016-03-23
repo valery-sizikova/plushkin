@@ -15,8 +15,6 @@
       vm.amountExpenses = false;
       vm.addNewBalanceItem = addNewBalanceItem;
 
-      vm.details = false;
-      vm.showDetails = showDetails;
 
       vm.calendarOpened = {
         first: false,
@@ -32,13 +30,19 @@
       };
       vm.firstDay = null;
       vm.lastDay = null;
+      vm.period = {};
       vm.dailyBudget = dailyBudget;
+      vm.savePeriodDates = MainService.savePeriodDates;
 
       activate();
 
       //////////
 
       function activate() {
+        MainService.getPeriodDates().then(function(response) {
+          vm.firstDay = Date.parse(response.firstDay);
+          vm.lastDay = Date.parse(response.lastDay);
+        });
         updateBalanceData('incomeItems');
         updateBalanceData('expensesItems');
       }
@@ -77,10 +81,6 @@
             updateBalanceData(type);
           });
         }
-      }
-
-      function showDetails() {
-        vm.details === false ? vm.details = true : vm.details = false;
       }
 
       function openCalendar(type) {

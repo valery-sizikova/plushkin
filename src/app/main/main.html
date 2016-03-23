@@ -4,9 +4,9 @@
         <div class="text-center">
             <h2 class="wash-dark-text bold">
                 <span ng-if="vm.firstDay === null">first day of period - </span>
-                <span ng-if="vm.firstDay !== null">{{vm.firstDay | date: 'HH:mm dd MMM yyyy'}} - </span>
+                <span ng-if="vm.firstDay !== null">{{vm.firstDay | date: 'dd MMM yyyy'}} - </span>
                 <span ng-if="vm.lastDay === null">last day of period</span>
-                <span ng-if="vm.lastDay !== null">{{vm.lastDay | date: 'HH:mm dd MMM yyyy'}}</span>
+                <span ng-if="vm.lastDay !== null">{{vm.lastDay | date: 'dd MMM yyyy'}}</span>
             </h2>
         </div>
 
@@ -15,7 +15,7 @@
         </h3>
 
 
-        <button ng-click="vm.go('/')"
+        <button ng-click="vm.savePeriodDates(vm.firstDay, vm.lastDay)"
                 class="btn btn-malcolm">
             boom!
         </button>
