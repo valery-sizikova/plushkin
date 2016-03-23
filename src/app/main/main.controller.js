@@ -9,14 +9,14 @@
       vm.incomeItems = [];
       vm.expensesTotal = false;
       vm.expensesItems = [];
+      vm.nameIncome = false;
+      vm.amountIncome = false;
+      vm.nameExpenses = false;
+      vm.amountExpenses = false;
+      vm.addNewBalanceItem = addNewBalanceItem;
+
       vm.details = false;
       vm.showDetails = showDetails;
-      vm.saveNewIncomeItem = saveNewIncomeItem;
-      vm.saveNewExpensesItem = saveNewExpensesItem;
-      vm.nameIncome = null;
-      vm.amountIncome = null;
-      vm.nameExpenses = null;
-      vm.amountExpenses = null;
 
       vm.calendarOpened = {
         first: false,
@@ -39,52 +39,48 @@
       //////////
 
       function activate() {
-        MainService.getData().then(function(response) {
-          vm.incomeItems = response.data.currentPeriod.incomeItems;
-          vm.expensesItems = response.data.currentPeriod.expensesItems;
-          vm.incomeTotal = getTotal(vm.incomeItems);
-          vm.expensesTotal = getTotal(vm.expensesItems);
-        }, function() {
-          alert('Something went wrong! Please reload the app!');
-        });
+        updateBalanceData('incomeItems');
+        updateBalanceData('expensesItems');
       }
 
       function getTotal(items) {
-        var total = null;
+        var total = 0;
         for (var i = 0; i < items.length; i++) {
-          total += items[i].amount;
+          total += parseInt(items[i].amount);
         }
         return total;
       }
 
+      function updateBalanceData(type) {
+        if (type === 'incomeItems') {
+          MainService.getBalanceData('incomeItems').then(function(response) {
+            vm.incomeItems = response;
+            vm.incomeTotal = getTotal(vm.incomeItems);
+          }).then(function() {
+            vm.nameIncome = '';
+            vm.amountIncome = '';
+          })
+        } else if (type === 'expensesItems') {
+          MainService.getBalanceData('expensesItems').then(function(response) {
+            vm.expensesItems = response;
+            vm.expensesTotal = getTotal(vm.expensesItems);
+          }).then(function() {
+            vm.nameExpenses = '';
+            vm.amountExpenses = '';
+          })
+        }
+      }
+
+      function addNewBalanceItem(type, name, amount) {
+        if(event.which === 13) {
+          MainService.addNewBalanceItem(type, name, amount).then(function() {
+            updateBalanceData(type);
+          });
+        }
+      }
+
       function showDetails() {
         vm.details === false ? vm.details = true : vm.details = false;
-      }
-
-      function saveNewIncomeItem() {
-        if (event.which === 13) {
-          var item = {
-            name: vm.nameIncome,
-            amount: vm.amountIncome
-          };
-          vm.incomeItems.push(item);
-          vm.incomeTotal += Number(item.amount);
-          vm.nameIncome = null;
-          vm.amountIncome = null;
-        }
-      }
-
-      function saveNewExpensesItem() {
-        if (event.which === 13) {
-          var item = {
-            name: vm.nameExpenses,
-            amount: vm.amountExpenses
-          };
-          vm.expensesItems.push(item);
-          vm.expensesTotal += Number(item.amount);
-          vm.nameExpenses = null;
-          vm.amountExpenses = null;
-        }
       }
 
       function openCalendar(type) {
@@ -95,10 +91,9 @@
         }
       }
 
-
       function dailyBudget() {
         var mlsecPerDay = 1000 * 60 * 60 * 24;
-        var periodLength = Math.round((vm.lastDay - vm.firstDay) / mlsecPerDay);
+        var periodLength = (Math.round((vm.lastDay - vm.firstDay) / mlsecPerDay)) + 1;
         return Math.round((vm.incomeTotal - vm.expensesTotal) / periodLength);
       }
 

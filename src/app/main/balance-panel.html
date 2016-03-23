@@ -12,12 +12,12 @@
                 </h3>
                 <h3 class="text-right balance-amount summer-text bolder">{{vm.incomeTotal}} €</h3>
             </uib-accordion-heading>
-            <div ng-repeat="item in vm.incomeItems">
+            <div ng-repeat="item in vm.incomeItems track by $index">
                 <h5 class="text-right balance-name summer-text">{{item.name}}</h5>
                 <h5 class="text-right balance-amount summer-text">{{item.amount}} €</h5>
             </div>
             <div>
-                <form ng-keypress="vm.saveNewIncomeItem()">
+                <form ng-keypress="vm.addNewBalanceItem('incomeItems', vm.nameIncome, vm.amountIncome)">
                     <input type="text" name="name" ng-model="vm.nameIncome" class="h5 balance-name summer-text">
                     <input type="text" name="amount" ng-model="vm.amountIncome" class="h5 balance-amount summer-text">
                 </form>
@@ -33,12 +33,12 @@
                 </h3>
                 <h3 class="text-right balance-amount summer-text bolder">{{vm.expensesTotal}} €</h3>
             </uib-accordion-heading>
-            <div ng-repeat="item in vm.expensesItems">
+            <div ng-repeat="item in vm.expensesItems track by $index">
                 <h5 class="text-right balance-name summer-text">{{item.name}}</h5>
                 <h5 class="text-right balance-amount summer-text">{{item.amount}} €</h5>
             </div>
             <div>
-                <form ng-keypress="vm.saveNewExpensesItem()">
+                <form ng-keypress="vm.addNewBalanceItem('expensesItems', vm.nameExpenses, vm.amountExpenses)">
                     <input type="text" name="name" ng-model="vm.nameExpenses" class="h5 balance-name summer-text">
                     <input type="text" name="amount" ng-model="vm.amountExpenses" class="h5 balance-amount summer-text">
                 </form>

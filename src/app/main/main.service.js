@@ -1,12 +1,16 @@
-(function() {
+(function () {
   'use strict';
 
   angular.module('app.main')
-    .factory('MainService', ['$location', '$http', '$q', function($location, $http, $q) {
-      var currentData = {};
+    .factory('MainService', ['$location', '$http', '$q', function ($location, $http, $q) {
+      var db = new loki('current-period.json');
+      var incomeItems = db.addCollection('incomeItems');
+      var expensesItems = db.addCollection('expensesItems');
+
       var service = {
         go: go,
-        getData: getData,
+        getBalanceData: getBalanceData,
+        addNewBalanceItem: addNewBalanceItem
       };
       return service;
 
@@ -16,16 +20,26 @@
         $location.path(path);
       }
 
-      function getData() {
-        var deferred = $q.defer();
-
-        currentData = $http.get('assets/data/current-period.json').then(function(response) {
-          deferred.resolve(response);
-        }, function(rejection) {
-          deferred.reject(rejection);
+      function getBalanceData(type) {
+        return $q(function (response, rejection) {
+          db.loadDatabase({}, function () {
+            response(db.getCollection(type).data);
+          })
         });
+      }
 
-        return deferred.promise;
+      function addNewBalanceItem(type, name, amount) {
+        return $q(function (response, rejection) {
+          db.loadDatabase({}, function () {
+            var tmp = db.getCollection(type);
+            tmp.insert({
+              'name': name,
+              'amount': amount
+            });
+            db.saveDatabase();
+            response(db.getCollection(type).data);
+          });
+        });
       }
 
     }])
