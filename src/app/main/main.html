@@ -1,48 +1,64 @@
 <div class="main">
     <div class="main-window">
 
-        <div class="text-center">
-            <h2 class="wash-dark-text bold">
-                <span ng-if="vm.firstDay === null">first day of period - </span>
-                <span ng-if="vm.firstDay !== null">{{vm.firstDay | date: 'dd MMM yyyy'}} - </span>
-                <span ng-if="vm.lastDay === null">last day of period</span>
-                <span ng-if="vm.lastDay !== null">{{vm.lastDay | date: 'dd MMM yyyy'}}</span>
-            </h2>
+        <i class="glyphicon glyphicon-cog settings-btn"
+           ng-click="vm.toggleSettings();"></i>
+
+        <div class="main-block" ng-if="!vm.settingsOpen">
+            <div class="text-center">
+                <h2 class="wash-dark-text bold">
+                    <span ng-if="vm.firstDay === null">first day of period - </span>
+                    <span ng-if="vm.firstDay !== null">{{vm.firstDay | date: 'dd MMM yyyy'}} - </span>
+                    <span ng-if="vm.lastDay === null">last day of period</span>
+                    <span ng-if="vm.lastDay !== null">{{vm.lastDay | date: 'dd MMM yyyy'}}</span>
+                </h2>
+            </div>
+
+            <h3 class="malcolm-dark-text text-center bold">daily budget &#8212
+                <span class="simon-extra-dark-text">{{vm.dailyBudget()}} €</span>
+            </h3>
         </div>
 
-        <h3 class="malcolm-dark-text text-center bold">daily budget &#8212
-            <span class="simon-extra-dark-text">{{vm.dailyBudget()}} €</span>
-        </h3>
-
-
-        <button ng-click="vm.savePeriodDates(vm.firstDay, vm.lastDay)"
-                class="btn btn-malcolm">
-            boom!
-        </button>
-
-        <form>
-            <div class="row">
-                <label class="col-xs-6">the first day of the period</label>
-                <p class="input-group col-xs-5">
-                    <input type="text" class="form-control" ng-model="vm.firstDay" uib-datepicker-popup is-open="vm.calendarOpened.first" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-malcolm no-margin" ng-click="vm.openCalendar('first')"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
-                </p>
+        <div class="settings" ng-if="vm.settingsOpen">
+            <div class="text-center">
+                <h2 class="wash-dark-text bold">
+                    settings
+                </h2>
             </div>
-
-            <br>
-
-            <div class="row">
-                <label class="col-xs-6">the last day of the period</label>
-                <p class="input-group col-xs-5">
-                    <input type="text" class="form-control" ng-model="vm.lastDay" uib-datepicker-popup is-open="vm.calendarOpened.last" datepicker-options="vm.dateOptions" ng-required="true" close-text="Close" alt-input-formats="vm.altInputFormats">
+            <form>
+                <div class="row">
+                    <label class="col-xs-6 text-right">the first day of the period</label>
+                    <p class="input-group col-xs-6">
+                        <input type="text" class="form-control" ng-model="vm.firstDay" uib-datepicker-popup
+                               is-open="vm.calendarOpened.first" datepicker-options="vm.dateOptions" ng-required="true"
+                               close-text="Close" alt-input-formats="vm.altInputFormats">
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-malcolm no-margin" ng-click="vm.openCalendar('last')"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-malcolm no-margin" ng-click="vm.openCalendar('first')"><i
+                            class="glyphicon glyphicon-calendar"></i></button>
                     </span>
-                </p>
-            </div>
-        </form>
+                    </p>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <label class="col-xs-6 text-right">the last day of the period</label>
+                    <p class="input-group col-xs-6">
+                        <input type="text" class="form-control" ng-model="vm.lastDay" uib-datepicker-popup
+                               is-open="vm.calendarOpened.last" datepicker-options="vm.dateOptions" ng-required="true"
+                               close-text="Close" alt-input-formats="vm.altInputFormats">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-malcolm no-margin" ng-click="vm.openCalendar('last')"><i
+                            class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                    </p>
+                </div>
+
+                <div class="row text-center">
+                    <button class="btn btn-malcolm" ng-click="vm.savePeriodDates(vm.firstDay, vm.lastDay)">save & close</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div ng-include

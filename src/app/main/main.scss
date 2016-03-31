@@ -17,6 +17,33 @@
     min-width: calc(100vw - 100px);
   }
 
+  .settings-btn {
+    font-size: 4rem;
+    margin-top: 20px;
+    margin-left: 20px;
+    color: $simon-light;
+
+    &:hover {
+      color: $simon;
+    }
+
+    &:active {
+      color: $simon-dark;
+    }
+  }
+
+  .main-block {
+    margin-top: -50px;
+  }
+
+  .settings {
+    margin-top: -50px;
+
+    form {
+      margin-top: 40px;
+    }
+  }
+
   label {
     margin-left: 1rem;
     font-size: 1.6rem;

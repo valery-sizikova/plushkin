@@ -15,6 +15,8 @@
       vm.amountExpenses = false;
       vm.addNewBalanceItem = addNewBalanceItem;
 
+      vm.settingsOpen = false;
+      vm.toggleSettings = toggleSettings;
 
       vm.calendarOpened = {
         first: false,
@@ -32,7 +34,7 @@
       vm.lastDay = null;
       vm.period = {};
       vm.dailyBudget = dailyBudget;
-      vm.savePeriodDates = MainService.savePeriodDates;
+      vm.savePeriodDates = savePeriodDates;
 
       activate();
 
@@ -40,8 +42,10 @@
 
       function activate() {
         MainService.getPeriodDates().then(function(response) {
-          vm.firstDay = Date.parse(response.firstDay);
-          vm.lastDay = Date.parse(response.lastDay);
+          if (response !== undefined) {
+            vm.firstDay = Date.parse(response.firstDay);
+            vm.lastDay = Date.parse(response.lastDay);
+          }
         });
         updateBalanceData('incomeItems');
         updateBalanceData('expensesItems');
@@ -81,6 +85,19 @@
             updateBalanceData(type);
           });
         }
+      }
+
+      function toggleSettings() {
+        if (vm.settingsOpen === true) {
+          vm.settingsOpen = false;
+        } else {
+          vm.settingsOpen = true;
+        }
+      }
+
+      function savePeriodDates(firstDay, lastDay) {
+        MainService.savePeriodDates(firstDay, lastDay);
+        toggleSettings();
       }
 
       function openCalendar(type) {
