@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.main')
-    .controller('MainController', ['$scope', '$location', 'MainService', function($scope, $location, MainService) {
+    .controller('MainController', ['$scope', '$location', 'MainService', 'BalanceService', function($scope, $location, MainService, BalanceService) {
       var vm = this;
       vm.go = MainService.go;
       vm.incomeTotal = false;
@@ -61,7 +61,7 @@
 
       function updateBalanceData(type) {
         if (type === 'incomeItems') {
-          MainService.getBalanceData('incomeItems').then(function(response) {
+          BalanceService.getBalanceData('incomeItems').then(function(response) {
             vm.incomeItems = response;
             vm.incomeTotal = getTotal(vm.incomeItems);
           }).then(function() {
@@ -69,7 +69,7 @@
             vm.amountIncome = '';
           })
         } else if (type === 'expensesItems') {
-          MainService.getBalanceData('expensesItems').then(function(response) {
+          BalanceService.getBalanceData('expensesItems').then(function(response) {
             vm.expensesItems = response;
             vm.expensesTotal = getTotal(vm.expensesItems);
           }).then(function() {
@@ -81,7 +81,7 @@
 
       function addNewBalanceItem(type, name, amount) {
         if(event.which === 13) {
-          MainService.addNewBalanceItem(type, name, amount).then(function() {
+          BalanceService.addNewBalanceItem(type, name, amount).then(function() {
             updateBalanceData(type);
           });
         }
