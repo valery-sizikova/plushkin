@@ -6,6 +6,7 @@
     'ui.bootstrap',
     'app.main',
     'app.balance',
+    'app.settings',
     'app.welcome',
     'lokijs'
   ])

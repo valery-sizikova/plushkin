@@ -4,6 +4,9 @@
   angular.module('app.balance')
     .factory('BalanceService', ['$q', function ($q) {
       var db = new loki('current-period.json');
+      var incomeItems = db.addCollection('incomeItems');
+      var expensesItems = db.addCollection('expensesItems');
+      var periodDates = db.addCollection('periodDates');
 
       var service = {
         getBalanceData: getBalanceData,

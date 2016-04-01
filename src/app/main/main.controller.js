@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.main')
-    .controller('MainController', ['$scope', '$location', 'MainService', 'BalanceService', function($scope, $location, MainService, BalanceService) {
+    .controller('MainController', ['$scope', '$location', 'MainService', 'BalanceService', 'SettingsService', function($scope, $location, MainService, BalanceService, SettingsService) {
       var vm = this;
       vm.go = MainService.go;
       vm.incomeTotal = false;
@@ -41,7 +41,7 @@
       //////////
 
       function activate() {
-        MainService.getPeriodDates().then(function(response) {
+        SettingsService.getPeriodDates().then(function(response) {
           if (response !== undefined) {
             vm.firstDay = Date.parse(response.firstDay);
             vm.lastDay = Date.parse(response.lastDay);
@@ -96,7 +96,7 @@
       }
 
       function savePeriodDates(firstDay, lastDay) {
-        MainService.savePeriodDates(firstDay, lastDay);
+        SettingsService.savePeriodDates(firstDay, lastDay);
         toggleSettings();
       }
 
