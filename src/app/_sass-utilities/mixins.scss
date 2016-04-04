@@ -40,3 +40,17 @@ $breakpoints: (
       + "Please make sure it is defined in `$breakpoints` map.";
   }
 }
+
+// Buttons
+
+@mixin buttons($bg, $bg-hover, $bg-active, $color) {
+  background-color: $bg;
+  color: $color;
+  &:hover {
+    background-color: $bg-hover;
+    color: $color;
+  }
+  &:active {
+    background-color: $bg-active;
+  }
+}

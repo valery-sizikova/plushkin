@@ -1,5 +1,6 @@
 .btn {
   padding: .5rem 1rem;
+  margin: 2rem;
   border: none;
   border-radius: 3px;
   text-transform: uppercase;
@@ -15,28 +16,10 @@
 }
 
 .btn-wash {
-  margin: 2rem;
-  background-color: $wash;
-  color: $simon;
-  &:hover {
-    background-color: $wash-dark;
-    color: $simon;
-  }
-  &:active {
-    background-color: $wash-extra-dark;
-  }
+  @include buttons($wash, $wash-dark, $wash-extra-dark, $simon);
 }
 
 .btn-malcolm {
-  margin: 2rem;
-  background-color: $malcolm-extra-light;
-  color: $summer;
-  &:hover {
-    background-color: $malcolm-light;
-    color: $summer;
-  }
-  &:active {
-    background-color: $malcolm;
-  }
+  @include buttons($malcolm-extra-light, $malcolm-light, $malcolm, $summer);
 }
 
