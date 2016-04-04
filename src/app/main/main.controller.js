@@ -5,6 +5,8 @@
     .controller('MainController', ['$scope', '$location', 'MainService', 'BalanceService', 'SettingsService', function($scope, $location, MainService, BalanceService, SettingsService) {
       var vm = this;
       vm.go = MainService.go;
+
+      /********** Balance **********/
       vm.incomeTotal = false;
       vm.incomeItems = [];
       vm.expensesTotal = false;
@@ -15,9 +17,9 @@
       vm.amountExpenses = false;
       vm.addNewBalanceItem = addNewBalanceItem;
 
+      /********** Settings **********/
       vm.settingsOpen = false;
       vm.toggleSettings = toggleSettings;
-
       vm.calendarOpened = {
         first: false,
         last: false
@@ -33,8 +35,16 @@
       vm.firstDay = null;
       vm.lastDay = null;
       vm.period = {};
-      vm.dailyBudget = dailyBudget;
       vm.savePeriodDates = savePeriodDates;
+
+      /********** Main **********/
+      vm.dailyBudget = dailyBudget;
+      vm.entries = [];
+      vm.updateEntries = updateEntries;
+      vm.addNewEntry = addNewEntry;
+      vm.entryDate = false;
+      vm.entryDescription = false;
+      vm.entryAmountSpent = false;
 
       activate();
 
@@ -49,7 +59,11 @@
         });
         updateBalanceData('incomeItems');
         updateBalanceData('expensesItems');
+        updateEntries();
       }
+
+
+      /********** Balance **********/
 
       function getTotal(items) {
         var total = 0;
@@ -87,6 +101,9 @@
         }
       }
 
+
+      /********** Settings **********/
+
       function toggleSettings() {
         if (vm.settingsOpen === true) {
           vm.settingsOpen = false;
@@ -108,10 +125,31 @@
         }
       }
 
+
+      /********** Main **********/
+
       function dailyBudget() {
         var mlsecPerDay = 1000 * 60 * 60 * 24;
         var periodLength = (Math.round((vm.lastDay - vm.firstDay) / mlsecPerDay)) + 1;
         return Math.round((vm.incomeTotal - vm.expensesTotal) / periodLength);
+      }
+
+      function updateEntries() {
+        MainService.getEntries().then(function(response) {
+          vm.entries = response;
+        }).then(function() {
+          vm.entryDate = '';
+          vm.entryDescription = '';
+          vm.entryAmountSpent = '';
+        });
+      }
+
+      function addNewEntry(date, description, amountSpent) {
+        if(event.which === 13) {
+          MainService.addNewEntry(date, description, amountSpent).then(function() {
+            updateEntries();
+          });
+        }
       }
 
     }]);

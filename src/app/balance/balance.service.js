@@ -7,6 +7,7 @@
       var incomeItems = db.addCollection('incomeItems');
       var expensesItems = db.addCollection('expensesItems');
       var periodDates = db.addCollection('periodDates');
+      var entires = db.addCollection('entries');
 
       var service = {
         getBalanceData: getBalanceData,
