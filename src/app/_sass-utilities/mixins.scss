@@ -1,11 +1,5 @@
-.viewport {
-  min-width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  background-color: $jayne-light !important;
-}
-
 // Media queries
+
 $breakpoints: (
         'sm': 500px,
         'lg': 900px,
@@ -40,6 +34,7 @@ $breakpoints: (
       + "Please make sure it is defined in `$breakpoints` map.";
   }
 }
+
 
 // Buttons
 
