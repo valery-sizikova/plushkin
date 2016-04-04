@@ -15,7 +15,7 @@
             </div>
 
             <h3 class="malcolm-dark-text text-center bold">daily budget &#8212
-                <span class="simon-extra-dark-text">{{vm.dailyBudget()}} €</span>
+                <span class="simon-extra-dark-text">{{vm.dailyBudget}} €</span>
             </h3>
 
             <div class="row" ng-repeat="entry in vm.entries">
@@ -23,13 +23,15 @@
                 <div class="col-xs-7">{{entry.description}}</div>
                 <div class="col-xs-1">{{entry.amountSpent}}</div>
                 <div class="col-xs-1">/</div>
-                <div class="col-xs-1">{{vm.dailyBudget() - entry.amountSpent}}</div>
+                <div class="col-xs-1">{{entry.possibleAmountToSpend}}</div>
             </div>
             <div class="row">
                 <form ng-keypress="vm.addNewEntry(vm.entryDate, vm.entryDescription, vm.entryAmountSpent)">
                     <input class="col-xs-2" type="text" ng-model="vm.entryDate">
                     <input class="col-xs-7" type="text" ng-model="vm.entryDescription">
                     <input class="col-xs-1" type="text" ng-model="vm.entryAmountSpent">
+                    <div class="col-xs-1">/</div>
+                    <div class="col-xs-1">{{vm.entries[vm.entries.length-1].possibleAmountToSpend - vm.entries[vm.entries.length-1].amountSpent + vm.dailyBudget}}</div>
                 </form>
             </div>
 

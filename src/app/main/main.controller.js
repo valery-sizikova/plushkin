@@ -38,13 +38,15 @@
       vm.savePeriodDates = savePeriodDates;
 
       /********** Main **********/
-      vm.dailyBudget = dailyBudget;
+      vm.getDailyBudget = getDailyBudget;
+      vm.dailyBudget = false;
       vm.entries = [];
       vm.updateEntries = updateEntries;
       vm.addNewEntry = addNewEntry;
       vm.entryDate = false;
       vm.entryDescription = false;
       vm.entryAmountSpent = false;
+      vm.getPossibleAmountToSpend = getPossibleAmountToSpend;
 
       activate();
 
@@ -78,6 +80,7 @@
           BalanceService.getBalanceData('incomeItems').then(function(response) {
             vm.incomeItems = response;
             vm.incomeTotal = getTotal(vm.incomeItems);
+            getDailyBudget();
           }).then(function() {
             vm.nameIncome = '';
             vm.amountIncome = '';
@@ -86,6 +89,7 @@
           BalanceService.getBalanceData('expensesItems').then(function(response) {
             vm.expensesItems = response;
             vm.expensesTotal = getTotal(vm.expensesItems);
+            getDailyBudget();
           }).then(function() {
             vm.nameExpenses = '';
             vm.amountExpenses = '';
@@ -97,6 +101,7 @@
         if(event.which === 13) {
           BalanceService.addNewBalanceItem(type, name, amount).then(function() {
             updateBalanceData(type);
+            updateEntries();
           });
         }
       }
@@ -128,10 +133,11 @@
 
       /********** Main **********/
 
-      function dailyBudget() {
+      function getDailyBudget() {
         var mlsecPerDay = 1000 * 60 * 60 * 24;
         var periodLength = (Math.round((vm.lastDay - vm.firstDay) / mlsecPerDay)) + 1;
-        return Math.round((vm.incomeTotal - vm.expensesTotal) / periodLength);
+        vm.dailyBudget = Math.round((vm.incomeTotal - vm.expensesTotal) / periodLength);
+        return vm.dailyBudget;
       }
 
       function updateEntries() {
@@ -141,6 +147,7 @@
           vm.entryDate = '';
           vm.entryDescription = '';
           vm.entryAmountSpent = '';
+          getPossibleAmountToSpend();
         });
       }
 
@@ -149,6 +156,15 @@
           MainService.addNewEntry(date, description, amountSpent).then(function() {
             updateEntries();
           });
+        }
+      }
+
+      function getPossibleAmountToSpend() {
+        if (vm.entries[0] !== undefined) {
+          vm.entries[0].possibleAmountToSpend = vm.dailyBudget;
+          for (var i = 1; i < vm.entries.length; i++) {
+            vm.entries[i].possibleAmountToSpend = vm.entries[i-1].possibleAmountToSpend - vm.entries[i-1].amountSpent + vm.dailyBudget;
+          }
         }
       }
 
