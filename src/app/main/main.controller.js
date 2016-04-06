@@ -16,6 +16,7 @@
       vm.nameExpenses = false;
       vm.amountExpenses = false;
       vm.addNewBalanceItem = addNewBalanceItem;
+      vm.dailyExpensesTotal = false;
 
       /********** Settings **********/
       vm.settingsOpen = false;
@@ -67,7 +68,7 @@
 
       /********** Balance **********/
 
-      function getTotal(items) {
+      function getTotalBalance(items) {
         var total = 0;
         for (var i = 0; i < items.length; i++) {
           total += parseInt(items[i].amount);
@@ -79,7 +80,7 @@
         if (type === 'incomeItems') {
           BalanceService.getBalanceData('incomeItems').then(function(response) {
             vm.incomeItems = response;
-            vm.incomeTotal = getTotal(vm.incomeItems);
+            vm.incomeTotal = getTotalBalance(vm.incomeItems);
             getDailyBudget();
           }).then(function() {
             vm.nameIncome = '';
@@ -88,7 +89,7 @@
         } else if (type === 'expensesItems') {
           BalanceService.getBalanceData('expensesItems').then(function(response) {
             vm.expensesItems = response;
-            vm.expensesTotal = getTotal(vm.expensesItems);
+            vm.expensesTotal = getTotalBalance(vm.expensesItems);
             getDailyBudget();
           }).then(function() {
             vm.nameExpenses = '';
@@ -133,6 +134,14 @@
 
       /********** Main **********/
 
+      function getTotalDailyExpenses(items) {
+        var total = 0;
+        for (var i = 0; i < items.length; i++) {
+          total += parseInt(items[i].amountSpent);
+        }
+        return total;
+      }
+
       function getDailyBudget() {
         var periodLength = moment(vm.lastDay).diff(moment(vm.firstDay), 'days') + 1;
         vm.dailyBudget = Math.round((vm.incomeTotal - vm.expensesTotal) / periodLength);
@@ -142,6 +151,7 @@
       function updateEntries() {
         MainService.getEntries().then(function(response) {
           vm.entries = response;
+          vm.dailyExpensesTotal = getTotalDailyExpenses(vm.entries);
         }).then(function() {
           if (vm.entries.length === 0) {
             var temp = new Date(vm.firstDay);

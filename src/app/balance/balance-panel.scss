@@ -4,7 +4,7 @@
   padding: 2rem;
   float: right;
 
-  .accordion, .total {
+  .accordion, .total, .daily-expenses {
     margin-top: 2rem !important;
     box-shadow: none !important;
     outline: none !important;
@@ -59,6 +59,13 @@
     .balance-amount {
       width: calc(44% - 2rem);
       margin-left: 2rem;
+    }
+  }
+
+  .daily-expenses {
+    margin-top: 0 !important;
+    h3 {
+      font-weight: 400;
     }
   }
 
