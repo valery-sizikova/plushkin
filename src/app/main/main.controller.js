@@ -134,8 +134,7 @@
       /********** Main **********/
 
       function getDailyBudget() {
-        var mlsecPerDay = 1000 * 60 * 60 * 24;
-        var periodLength = (Math.round((vm.lastDay - vm.firstDay) / mlsecPerDay)) + 1;
+        var periodLength = moment(vm.lastDay).diff(moment(vm.firstDay), 'days') + 1;
         vm.dailyBudget = Math.round((vm.incomeTotal - vm.expensesTotal) / periodLength);
         return vm.dailyBudget;
       }
