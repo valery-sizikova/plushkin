@@ -34,6 +34,58 @@
 
   .main-block {
     margin-top: -50px;
+
+    .entries {
+      margin-top: 50px;
+    }
+
+    .entry-form {
+      margin: 0 0 4rem 0 !important;
+      width: 100%;
+      input {
+        padding: 0;
+        background-color: $jayne-light;
+        border: none;
+        border-bottom: 2px solid $simon-dark;
+        margin-right: 1rem;
+
+        &:nth-child(1) {
+          margin-left: 8rem;
+          text-align: center;
+        }
+
+        &:nth-child(3) {
+          margin-right: 0;
+          text-align: center;
+        }
+
+        &:hover {
+          border: 0;
+          border-bottom: 2px solid $simon-dark;
+          outline: none;
+        }
+
+        &:focus {
+          border-bottom: 2px solid $simon-dark;
+          outline: none;
+        }
+      }
+      div {
+        padding: 0 1rem;
+      }
+    }
+
+    .entries-list {
+      margin: 0;
+      width: 100%;
+      div {
+        padding: 1rem 0;
+      }
+
+      &:nth-child(even) {
+        background-color: $jayne;
+      }
+    }
   }
 
 }

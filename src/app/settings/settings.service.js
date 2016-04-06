@@ -30,8 +30,8 @@
           db.loadDatabase({}, function() {
             var tmp = db.getCollection('periodDates');
             tmp.insert({
-              'firstDay': firstDay,
-              'lastDay': lastDay
+              'firstDay': Date.parse(firstDay),
+              'lastDay': Date.parse(lastDay)
             });
             db.saveDatabase();
             response(db.getCollection('periodDates').data);

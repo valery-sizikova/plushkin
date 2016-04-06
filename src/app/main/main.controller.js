@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.main')
-    .controller('MainController', ['$scope', '$location', 'MainService', 'BalanceService', 'SettingsService', function($scope, $location, MainService, BalanceService, SettingsService) {
+    .controller('MainController', ['$scope', '$location', '$filter', 'MainService', 'BalanceService', 'SettingsService', function($scope, $location, $filter, MainService, BalanceService, SettingsService) {
       var vm = this;
       vm.go = MainService.go;
 
@@ -43,7 +43,7 @@
       vm.entries = [];
       vm.updateEntries = updateEntries;
       vm.addNewEntry = addNewEntry;
-      vm.entryDate = false;
+      vm.entryDate = new Date();
       vm.entryDescription = false;
       vm.entryAmountSpent = false;
       vm.getPossibleAmountToSpend = getPossibleAmountToSpend;
@@ -55,8 +55,8 @@
       function activate() {
         SettingsService.getPeriodDates().then(function(response) {
           if (response !== undefined) {
-            vm.firstDay = Date.parse(response.firstDay);
-            vm.lastDay = Date.parse(response.lastDay);
+            vm.firstDay = response.firstDay;
+            vm.lastDay = response.lastDay;
           }
         });
         updateBalanceData('incomeItems');
@@ -144,7 +144,14 @@
         MainService.getEntries().then(function(response) {
           vm.entries = response;
         }).then(function() {
-          vm.entryDate = '';
+          if (vm.entries.length === 0) {
+            var temp = new Date(vm.firstDay);
+            vm.entryDate = $filter('date')(temp, 'dd MMM');
+          } else {
+            var temp = new Date(vm.entries[vm.entries.length - 1].date);
+            temp.setDate(temp.getDate() + 1);
+            vm.entryDate = $filter('date')(temp, 'dd MMM');
+          }
           vm.entryDescription = '';
           vm.entryAmountSpent = '';
           getPossibleAmountToSpend();
