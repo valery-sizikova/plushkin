@@ -19,11 +19,12 @@
             </h3>
 
             <div class="entries">
+
                 <div class="row">
                     <form ng-keypress="vm.addNewEntry(vm.entryDate, vm.entryDescription, vm.entryAmountSpent)"
                           class="entry-form malcolm-extra-light-text">
                         <input class="col-xs-1" type="text" ng-model="vm.entryDate">
-                        <input class="col-xs-6" type="text" ng-model="vm.entryDescription">
+                        <input class="col-xs-6" type="text" id="description" ng-model="vm.entryDescription">
                         <input class="col-xs-1" type="text" ng-model="vm.entryAmountSpent">
                         <div class="col-xs-1">/</div>
                         <div class="col-xs-1">{{vm.entries[vm.entries.length-1].possibleAmountToSpend - vm.entries[vm.entries.length-1].amountSpent + vm.dailyBudget}}</div>
@@ -37,6 +38,7 @@
                     <div class="col-xs-1">/</div>
                     <div class="col-xs-1 text-left">{{entry.possibleAmountToSpend}}</div>
                 </div>
+
             </div>
 
         </div>

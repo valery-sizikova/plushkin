@@ -160,7 +160,8 @@
 
       function addNewEntry(date, description, amountSpent) {
         if(event.which === 13) {
-          MainService.addNewEntry(date, description, amountSpent).then(function() {
+          var amountSpentTotal = Math.round(eval(amountSpent));
+          MainService.addNewEntry(date, description, amountSpentTotal).then(function() {
             updateEntries();
           });
         }
