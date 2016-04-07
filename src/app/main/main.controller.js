@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('app.main')
-    .controller('MainController', ['$scope', '$location', '$filter', 'MainService', 'BalanceService', 'SettingsService', function($scope, $location, $filter, MainService, BalanceService, SettingsService) {
+    .controller('MainController', ['$scope', '$location', '$filter', '$uibModal', 'MainService', 'BalanceService', 'SettingsService', function($scope, $location, $filter, $uibModal, MainService, BalanceService, SettingsService) {
       var vm = this;
       vm.go = MainService.go;
 
@@ -19,25 +19,10 @@
       vm.dailyExpensesTotal = false;
 
       /********** Settings **********/
-      vm.settingsOpen = false;
-      vm.toggleSettings = toggleSettings;
-      vm.calendarOpened = {
-        first: false,
-        last: false
-      };
-      vm.openCalendar = openCalendar;
-      vm.altInputFormats = ['M!/d!/yyyy'];
-      vm.dateOptions = {
-        formatYear: 'yy',
-        maxDate: new Date(2020, 5, 22),
-        minDate: new Date(2015, 5, 22),
-        startingDay: 1,
-        showWeeks: false
-      };
+
       vm.firstDay = null;
       vm.lastDay = null;
-      vm.period = {};
-      vm.savePeriodDates = savePeriodDates;
+      vm.openSettings = openSettings;
 
       /********** Main **********/
       vm.getDailyBudget = getDailyBudget;
@@ -46,8 +31,8 @@
       vm.updateEntries = updateEntries;
       vm.addNewEntry = addNewEntry;
       vm.entryDate = new Date();
-      vm.entryDescription = false;
-      vm.entryAmountSpent = false;
+      vm.entryDescription = '';
+      vm.entryAmountSpent = '';
       vm.getPossibleAmountToSpend = getPossibleAmountToSpend;
 
       activate();
@@ -111,25 +96,25 @@
 
       /********** Settings **********/
 
-      function toggleSettings() {
-        if (vm.settingsOpen === true) {
-          vm.settingsOpen = false;
-        } else {
-          vm.settingsOpen = true;
-        }
-      }
+      function openSettings() {
+        var modalInstance = $uibModal.open({
+          animation: false,
+          templateUrl: '../src/app/settings/settings.html',
+          controller: 'SettingsController',
+          controllerAs: 'vm',
+          size: 'md'
+        });
 
-      function savePeriodDates(firstDay, lastDay) {
-        SettingsService.savePeriodDates(firstDay, lastDay);
-        toggleSettings();
-      }
-
-      function openCalendar(type) {
-        if (type === "first") {
-          vm.calendarOpened.first = true;
-        } else if (type === "last") {
-          vm.calendarOpened.last = true;
-        }
+        modalInstance.result.then(function () {
+          SettingsService.getPeriodDates().then(function(response) {
+            if (response !== undefined) {
+              vm.firstDay = response.firstDay;
+              vm.lastDay = response.lastDay;
+            }
+          }).then(function() {
+            getDailyBudget();
+          });
+        });
       }
 
 

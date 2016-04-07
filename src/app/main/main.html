@@ -1,10 +1,14 @@
 <div class="main">
     <div class="main-window">
 
-        <i class="glyphicon glyphicon-cog settings-btn"
-           ng-click="vm.toggleSettings();"></i>
+        <div class="row simon-bg menu">
+            <i class="glyphicon glyphicon-option-vertical settings-btn"></i>
 
-        <div class="main-block" ng-if="!vm.settingsOpen">
+            <i class="glyphicon glyphicon-cog settings-btn"
+               ng-click="vm.openSettings()"></i>
+        </div>
+
+        <div class="main-block">
             <div class="text-center">
                 <h2 class="wash-dark-text bold">
                     <span ng-if="vm.firstDay === null">first day of period - </span>
@@ -43,9 +47,6 @@
 
         </div>
 
-        <div ng-include
-             class="settings"
-             src="'app/settings/settings.html'"></div>
     </div>
 
     <div ng-include
