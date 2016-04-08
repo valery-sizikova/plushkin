@@ -98,7 +98,7 @@
 
       function openSettings() {
         var modalInstance = $uibModal.open({
-          animation: false,
+          animation: true,
           templateUrl: '../src/app/settings/settings.html',
           controller: 'SettingsController',
           controllerAs: 'vm',
