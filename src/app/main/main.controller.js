@@ -22,6 +22,7 @@
 
       vm.firstDay = null;
       vm.lastDay = null;
+      vm.currency = null;
       vm.openSettings = openSettings;
 
       /********** Main **********/
@@ -40,10 +41,11 @@
       //////////
 
       function activate() {
-        SettingsService.getPeriodDates().then(function(response) {
+        SettingsService.getSettings().then(function(response) {
           if (response !== undefined) {
             vm.firstDay = response.firstDay;
             vm.lastDay = response.lastDay;
+            vm.currency = response.currency;
           }
         });
         updateBalanceData('incomeItems');
@@ -106,10 +108,11 @@
         });
 
         modalInstance.result.then(function () {
-          SettingsService.getPeriodDates().then(function(response) {
+          SettingsService.getSettings().then(function(response) {
             if (response !== undefined) {
               vm.firstDay = response.firstDay;
               vm.lastDay = response.lastDay;
+              vm.currency = response.currency;
             }
           }).then(function() {
             getDailyBudget();

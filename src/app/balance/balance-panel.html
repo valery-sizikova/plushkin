@@ -10,11 +10,11 @@
 
                     <span class="summer-text bolder">income</span>
                 </h3>
-                <h3 class="text-right balance-amount summer-text bolder">{{vm.incomeTotal}} €</h3>
+                <h3 class="text-right balance-amount summer-text bolder">{{vm.incomeTotal}} {{vm.currency}}</h3>
             </uib-accordion-heading>
             <div ng-repeat="item in vm.incomeItems track by $index">
                 <h5 class="text-right balance-name summer-text">{{item.name}}</h5>
-                <h5 class="text-right balance-amount summer-text">{{item.amount}} €</h5>
+                <h5 class="text-right balance-amount summer-text">{{item.amount}} {{vm.currency}}</h5>
             </div>
             <div>
                 <form ng-keypress="vm.addNewBalanceItem('incomeItems', vm.nameIncome, vm.amountIncome)">
@@ -31,11 +31,11 @@
 
                     <span class="summer-text bolder">expenses</span>
                 </h3>
-                <h3 class="text-right balance-amount summer-text bolder">{{vm.expensesTotal}} €</h3>
+                <h3 class="text-right balance-amount summer-text bolder">{{vm.expensesTotal}} {{vm.currency}}</h3>
             </uib-accordion-heading>
             <div ng-repeat="item in vm.expensesItems track by $index">
                 <h5 class="text-right balance-name summer-text">{{item.name}}</h5>
-                <h5 class="text-right balance-amount summer-text">{{item.amount}} €</h5>
+                <h5 class="text-right balance-amount summer-text">{{item.amount}} {{vm.currency}}</h5>
             </div>
             <div>
                 <form ng-keypress="vm.addNewBalanceItem('expensesItems', vm.nameExpenses, vm.amountExpenses)">
@@ -48,17 +48,17 @@
 
     <div class="daily-expenses">
         <h3 class="text-right balance-name jayne-extra-light-text">daily expenses</h3>
-        <h3 class="text-right balance-amount jayne-extra-light-text">{{vm.dailyExpensesTotal}} €</h3>
+        <h3 class="text-right balance-amount jayne-extra-light-text">{{vm.dailyExpensesTotal}} {{vm.currency}}</h3>
     </div>
 
     <div class="total">
         <h3 class="text-right balance-name malcolm-extra-dark-text bold">left to spend</h3>
-        <h3 class="text-right balance-amount jayne-extra-light-text bold">{{vm.incomeTotal - vm.expensesTotal - vm.dailyExpensesTotal}} €</h3>
+        <h3 class="text-right balance-amount jayne-extra-light-text bold">{{vm.incomeTotal - vm.expensesTotal - vm.dailyExpensesTotal}} {{vm.currency}}</h3>
     </div>
 </div>
 
 <div class="balance-panel-small">
     <div class="total-small">
-        <h3 class="text-right balance-name malcolm-dark-text bold">left to spend &#8212 <span class="summer-text">{{vm.incomeTotal - vm.expensesTotal - vm.dailyExpensesTotal}} €</span></h3>
+        <h3 class="text-right balance-name malcolm-dark-text bold">left to spend &#8212 <span class="summer-text">{{vm.incomeTotal - vm.expensesTotal - vm.dailyExpensesTotal}} {{vm.currency}}</span></h3>
     </div>
 </div>

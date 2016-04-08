@@ -7,7 +7,7 @@
 
       /********** Settings **********/
 
-      vm.savePeriodDates = savePeriodDates;
+      vm.saveSettings = saveSettings;
       vm.closeSettings = closeSettings;
       vm.openCalendar = openCalendar;
       vm.calendarOpened = {
@@ -24,6 +24,7 @@
       };
       vm.firstDay = null;
       vm.lastDay = null;
+      vm.currency = null;
 
 
       activate();
@@ -31,16 +32,17 @@
       //////////
 
       function activate() {
-        SettingsService.getPeriodDates().then(function(response) {
+        SettingsService.getSettings().then(function(response) {
           if (response !== undefined) {
             vm.firstDay = response.firstDay;
             vm.lastDay = response.lastDay;
+            vm.currency = response.currency;
           }
         });
       }
 
-      function savePeriodDates(firstDay, lastDay) {
-        SettingsService.savePeriodDates(firstDay, lastDay).then(function() {
+      function saveSettings(firstDay, lastDay, currency) {
+        SettingsService.saveSettings(firstDay, lastDay, currency).then(function() {
           closeSettings();
         });
       }

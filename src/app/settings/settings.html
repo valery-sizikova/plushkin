@@ -33,8 +33,17 @@
             </p>
         </div>
 
+        <div class="row">
+            <label class="col-xs-6 text-right">currency</label>
+            <select type="text" ng-model="vm.currency">
+                <option value="€">euro</option>
+                <option value="$">dollar</option>
+                <option value="£">pound</option>
+            </select>
+        </div>
+
         <div class="row text-center">
-            <button class="btn btn-malcolm margin-2x" ng-click="vm.savePeriodDates(vm.firstDay, vm.lastDay)">save & close</button>
+            <button class="btn btn-malcolm margin-2x" ng-click="vm.saveSettings(vm.firstDay, vm.lastDay, vm.currency)">save & close</button>
         </div>
     </form>
 </div>

@@ -6,7 +6,7 @@
       var db = new loki('current-period.json');
       var incomeItems = db.addCollection('incomeItems');
       var expensesItems = db.addCollection('expensesItems');
-      var periodDates = db.addCollection('periodDates');
+      var periodDates = db.addCollection('settings');
       var entires = db.addCollection('entries');
 
       var service = {
